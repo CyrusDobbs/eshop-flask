@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block head %}
+{% endblock %}
+{% block title %}
+    Admin
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-4 mx-auto">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="notification is-danger">
+                        {{ messages[0] }}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <form method="POST" enctype="multipart/form-data" action="/additem">
+                <div class="mb-3">
+                    <label for="itemName" class="form-label">Name</label>
+                    <input name="name" class="form-control" id="itemName">
+                </div>
+
+                <div class="mb-3">
+                    <label for="itemDesc" class="form-label">Description</label>
+                    <textarea name="desc" class="form-control" id="itemDesc" rows="3"></textarea>
+                </div>
+                <div class="mb-2">
+                    <label for="itemName" class="form-label">Type</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="type" id="ringType" value="ring">
+                        <label class="form-check-label" for="ringType">
+                            Ring
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="type" id="necklaceType" value="necklace">
+                        <label class="form-check-label" for="necklaceType">
+                            Necklace
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="type" id="otherType" value="other">
+                        <label class="form-check-label" for="otherType">
+                            Other
+                        </label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="itemPrice" class="form-label">Price</label>
+                    <input name="price" class="form-control" id="itemPrice">
+                </div>
+                <div class="mb-3">
+                    <label for="formFileSm" class="f orm-label">Upload image</label>
+                    <input name="image" class="form-control form-control-sm" id="formFileSm" type="file">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+{% endblock %}

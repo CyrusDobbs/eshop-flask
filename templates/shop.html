@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block head %}
+{% endblock %}
+{% block title %}
+    Shop
+{% endblock %}
+{% block content %}
+    <div id="itemCards" class="container">
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        const _items = JSON.parse(`{{ items|tojson|safe }}`)
+    </script>
+    <script src="/static/js/items.js"></script>
+{% endblock %}
