@@ -6,16 +6,12 @@ from flask import current_app
 main = Blueprint('main', __name__)
 
 
-@main.route('/')
-def login():
-    return render_template('shop.html')
-
-
 @main.route('/about/')
 def about():
     return render_template('about.html')
 
 
+@main.route('/')
 @main.route('/shop/')
 def shop():
     items_curser = current_app.db.items.find()
