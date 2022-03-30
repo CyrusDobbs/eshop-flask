@@ -1,2 +1,4 @@
 # eshop-flask
-A website for my Mum to sell her jewelry on.
+A jewellery website...
+
+Currently, hosted at https://cyrusdobbs.pythonanywhere.com/.
