@@ -129,20 +129,20 @@ dmypy.json
 .pyre/
 
 # Bootstrap
-/static/css/bootstrap.css
-/static/css/bootstrap.rtl.css
-/static/css/bootstrap-grid.css
-/static/css/bootstrap-grid.rtl.css
-/static/css/bootstrap-reboot.css
-/static/css/bootstrap-reboot.rtl.css
-/static/css/bootstrap-utilities.css
-/static/css/bootstrap-utilities.rtl.css
-
-# JS
-/static/js/libraries/bootstrap.bundle.js
-/static/js/libraries/bootstrap.esm.js
-/static/js/libraries/bootstrap.js
-/static/js/libraries/jquery-3.6.0.js
+#/static/css/bootstrap.css
+#/static/css/bootstrap.rtl.css
+#/static/css/bootstrap-grid.css
+#/static/css/bootstrap-grid.rtl.css
+#/static/css/bootstrap-reboot.css
+#/static/css/bootstrap-reboot.rtl.css
+#/static/css/bootstrap-utilities.css
+#/static/css/bootstrap-utilities.rtl.css
+#
+## JS
+#/static/js/libraries/bootstrap.bundle.js
+#/static/js/libraries/bootstrap.esm.js
+#/static/js/libraries/bootstrap.js
+#/static/js/libraries/jquery-3.6.0.js
 
 # Images
 #/static/img/necklaces/

@@ -6,8 +6,11 @@
     Admin
 {% endblock %}
 {% block content %}
+    {% if session['username'] %}
+        Welcome {{ session['username'] }}
+    {% endif %}
     <div class="row">
-        <div class="col-4 mx-auto">
+        <div class="col-md-6 col-lg-4 col-xl-3 mx-auto">
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     <div class="notification is-danger">
@@ -26,23 +29,41 @@
                     <textarea name="desc" class="form-control" id="itemDesc" rows="3"></textarea>
                 </div>
                 <div class="mb-2">
-                    <label for="itemName" class="form-label">Type</label>
+                    <label for="itemName" class="form-label">Collection</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="type" id="ringType" value="ring">
                         <label class="form-check-label" for="ringType">
-                            Ring
+                            Rings
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="type" id="necklaceType" value="necklace">
                         <label class="form-check-label" for="necklaceType">
-                            Necklace
+                            Bangles & Bracelets
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="type" id="otherType" value="other">
                         <label class="form-check-label" for="otherType">
-                            Other
+                            Earrings
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="type" id="otherType" value="other">
+                        <label class="form-check-label" for="otherType">
+                            Pendants & Necklaces
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="type" id="otherType" value="other">
+                        <label class="form-check-label" for="otherType">
+                            Broaches
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="type" id="otherType" value="other">
+                        <label class="form-check-label" for="otherType">
+                            Spoons & Scoops
                         </label>
                     </div>
                 </div>

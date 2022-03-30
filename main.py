@@ -11,9 +11,9 @@ def hello_world():
     return render_template('base.html')
 
 
-@main.route('/home/')
-def home():
-    return render_template('home.html')
+@main.route('/about/')
+def about():
+    return render_template('about.html')
 
 
 @main.route('/shop/')
@@ -25,6 +25,11 @@ def shop():
         item['_id'] = str(item['_id'])
 
     return render_template('shop.html', items=items)
+
+
+@main.route('/contact/')
+def contact():
+    return render_template('contact.html')
 
 
 @main.route('/admin/')

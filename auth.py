@@ -14,7 +14,6 @@ def login_post():
     # login code goes here
     username = request.form.get('username')
     password = request.form.get('password')
-    remember = True if request.form.get('remember') else False
 
     user = current_app.db.users.find_one({'username': username})
 
@@ -23,7 +22,7 @@ def login_post():
         return redirect(url_for('auth.login'))  # if the user doesn't exist or password is wrong, reload the page
 
     session["username"] = username
-    return redirect(url_for('main.home'))
+    return redirect(url_for('main.admin'))
 
 
 @auth.route('/logout')
