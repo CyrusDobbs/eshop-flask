@@ -1,4 +1,2 @@
 # eshop-flask
-A jewellery website...
-
-Currently, hosted at https://cyrusdobbs.pythonanywhere.com/.
+A jewellery website - http://www.rtjewelery.co.uk/.
