@@ -6,9 +6,9 @@ from flask import current_app
 main = Blueprint('main', __name__)
 
 
-@main.route("/")
-def hello_world():
-    return render_template('base.html')
+@main.route('/')
+def login():
+    return render_template('shop.html')
 
 
 @main.route('/about/')
