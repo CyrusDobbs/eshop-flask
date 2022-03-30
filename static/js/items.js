@@ -16,7 +16,7 @@ function Item(id, type, name, desc, price, img) {
         return `<p class="card-text fs-5">£${this.price}.00</p>`;
     }
     this.getCardImg = function () {
-        return `<img src="/img/${this.type}/${this.id}" class="card-img-top">`;
+        return `<img src="/img/${this.id}" class="card-img-top">`;
     }
 }
 

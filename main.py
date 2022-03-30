@@ -75,13 +75,12 @@ def additem():
 
     if file and allowed_file(file.filename):
         file.save(
-            os.path.join(current_app.root_path, 'static', 'img', jtype + "s",
-                         str(item['_id']) + "." + file.filename.rsplit('.', 1)[1].lower()))
+            os.path.join(current_app.root_path, 'static', 'img', str(item['_id']) + "." + file.filename.rsplit('.', 1)[1].lower()))
 
     return render_template('admin.html')
 
 
-@main.route('/img/ring/<img_id>')
+@main.route('/img/<img_id>')
 def get_img(img_id):
-    filename = os.path.join("static/img/rings", f"{img_id}.jpg")
+    filename = os.path.join("static/img", f"{img_id}.jpg")
     return send_file(filename, mimetype='image/jpeg')
