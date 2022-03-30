@@ -1,12 +1,15 @@
-from flask import Flask, render_template, jsonify, send_file
-from flask_pymongo import PyMongo
+import os
+import pathlib
+
 import tomli
+from flask import Flask
+from flask_pymongo import PyMongo
 
 
 def create_app():
     app = Flask(__name__)
 
-    with open("conf.toml", "rb") as f:
+    with open(os.path.join(pathlib.Path(__file__).parent.resolve(), "conf.toml"), "rb") as f:
         toml_dict = tomli.load(f)
 
     app.config['SECRET_KEY'] = toml_dict['config']['secretkey']
