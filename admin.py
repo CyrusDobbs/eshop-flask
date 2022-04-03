@@ -6,10 +6,10 @@ from flask import session, redirect, url_for, request, flash, current_app, rende
 
 from main import shop
 
-admin = Blueprint('admin', __name__)
+administration = Blueprint('administration', __name__)
 
 
-@admin.before_request
+@administration.before_request
 def check_admin():
     if not session.get('username') and session.get('username') in current_app.config['ADMINS']:
         return redirect(url_for('auth.login'))
@@ -17,12 +17,12 @@ def check_admin():
         pass
 
 
-@admin.route('/admin/')
+@administration.route('/admin/')
 def admin():
     return render_template('admin.html')
 
 
-@admin.route('/additem', methods=['POST'])
+@administration.route('/additem', methods=['POST'])
 def add_item():
     if 'image' not in request.files:
         flash('No file part')
@@ -61,7 +61,7 @@ def add_item():
     return render_template('admin.html')
 
 
-@admin.route('/sold/<item_id>')
+@administration.route('/sold/<item_id>')
 def item_sold(item_id):
     item_identifier = {"_id": ObjectId(item_id)}
     item = current_app.db.items.find_one(item_identifier)
@@ -69,7 +69,7 @@ def item_sold(item_id):
     return shop()
 
 
-@admin.route('/hide/<item_id>')
+@administration.route('/hide/<item_id>')
 def item_hide(item_id):
     item_identifier = {"_id": ObjectId(item_id)}
     item = current_app.db.items.find_one(item_identifier)
@@ -77,7 +77,7 @@ def item_hide(item_id):
     return shop()
 
 
-@admin.route('/delete/<item_id>')
+@administration.route('/delete/<item_id>')
 def item_delete(item_id):
     item_identifier = {"_id": ObjectId(item_id)}
     current_app.db.items.delete_one(item_identifier)
