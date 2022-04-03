@@ -3,7 +3,7 @@
 {% block head %}
 {% endblock %}
 {% block title %}
-    Shop
+    {{ collection }}
 {% endblock %}
 {% block content %}
     <div id="itemCards" class="container">
@@ -11,6 +11,7 @@
 {% endblock %}
 {% block scripts %}
     <script>
+        const admin = `{{ session['username'] }}`
         const _items = JSON.parse(`{{ items|tojson|safe }}`)
     </script>
     <script src="/static/js/items.js"></script>

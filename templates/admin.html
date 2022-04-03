@@ -7,10 +7,10 @@
 {% endblock %}
 {% block content %}
     {% if session['username'] %}
-        Welcome {{ session['username'] }}
+        <h4>Welcome {{ session['username'] }}</h4>
     {% endif %}
     <div class="row">
-        <div class="col-md-6 col-lg-4 col-xl-3 mx-auto">
+        <div class="col-md-6 col-lg-5 col-xl-4 mx-auto">
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     <div class="notification is-danger">
@@ -21,59 +21,59 @@
             <form method="POST" enctype="multipart/form-data" action="/additem">
                 <div class="mb-3">
                     <label for="itemName" class="form-label">Name</label>
-                    <input name="name" class="form-control" id="itemName">
+                    <input name="name" class="form-control" id="itemName" required>
                 </div>
-
                 <div class="mb-3">
                     <label for="itemDesc" class="form-label">Description</label>
                     <textarea name="desc" class="form-control" id="itemDesc" rows="3"></textarea>
                 </div>
                 <div class="mb-2">
-                    <label for="itemName" class="form-label">Collection</label>
+                    <label for="collection" class="form-label">Collection</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="type" id="ringType" value="rings">
-                        <label class="form-check-label" for="ringType">
+                        <input class="form-check-input" type="radio" name="collection" id="rings" value="rings" required>
+                        <label class="form-check-label" for="rings">
                             Rings
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="type" id="necklaceType" value="banglesAndBracelets">
-                        <label class="form-check-label" for="necklaceType">
+                        <input class="form-check-input" type="radio" name="collection" id="bracelets" value="bracelets">
+                        <label class="form-check-label" for="bracelets">
                             Bangles & Bracelets
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="type" id="otherType" value="Earrings">
-                        <label class="form-check-label" for="otherType">
+                        <input class="form-check-input" type="radio" name="collection" id="earrings" value="earrings" >
+                        <label class="form-check-label" for="earrings">
                             Earrings
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="type" id="otherType" value="pendantsAndNecklaces">
-                        <label class="form-check-label" for="otherType">
+                        <input class="form-check-input" type="radio" name="collection" id="necklaces" value="necklaces">
+                        <label class="form-check-label" for="necklaces">
                             Pendants & Necklaces
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="type" id="otherType" value="broaches">
-                        <label class="form-check-label" for="otherType">
+                        <input class="form-check-input" type="radio" name="collection" id="broaches" value="broaches">
+                        <label class="form-check-label" for="broaches">
                             Broaches
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="type" id="otherType" value="spoonsAndScoops">
-                        <label class="form-check-label" for="otherType">
+                        <input class="form-check-input" type="radio" name="collection" id="spoons" value="spoons">
+                        <label class="form-check-label" for="spoons">
                             Spoons & Scoops
                         </label>
                     </div>
                 </div>
-                <div class="mb-3">
-                    <label for="itemPrice" class="form-label">Price</label>
-                    <input name="price" class="form-control" id="itemPrice">
+                <label for="itemPrice" class="form-label">Price</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-text">£</div>
+                    <input name="price" type="number" class="form-control" id="itemPrice" required>
                 </div>
                 <div class="mb-3">
                     <label for="formFileSm" class="f orm-label">Upload image</label>
-                    <input name="image" class="form-control form-control-sm" id="formFileSm" type="file">
+                    <input name="image" class="form-control form-control-sm" id="formFileSm" type="file" accept=".gif,.jpg,.jpeg,.png" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

@@ -1,10 +1,12 @@
-function Item(id, type, name, desc, price, img) {
+function Item(id, type, name, desc, price, img, sold, hidden) {
     this.id = id;
     this.type = type;
     this.name = name;
     this.desc = desc;
     this.price = price;
     this.img = img;
+    this.sold = sold;
+    this.hidden = hidden;
 
     this.getCardTitle = function () {
         return `<h4 class="card-title text-center mb-3">${this.name}</h4>`;
@@ -13,23 +15,45 @@ function Item(id, type, name, desc, price, img) {
         return `<p class="card-text">${this.desc}</p>`;
     }
     this.getCardPrice = function () {
-        return `<p class="card-text fs-5">£${this.price}.00</p>`;
+        if (this.sold) {
+            return `<p class="card-text fs-5 text-danger">SOLD</p>`;
+        } else {
+            return `<p class="card-text fs-5">£${this.price}</p>`;
+        }
     }
     this.getCardImg = function () {
         return `<img src="/img/${this.id}" class="card-img-top">`;
+    }
+    this.getAdminButtons = function () {
+        return `<div class="card-footer">
+                    <div class="row">
+                        <div class="col-auto">
+                            <a href="/sold/${this.id}"><button type="button" class="btn btn-success">${this.sold ? "<b>Un-Sell</b>" : "Sold"}</button></a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="/hide/${this.id}"><button type="button" class="btn btn-warning">${this.hidden ? "<b>Un-Hide</b>" : "Hide"}</button></a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="/delete/${this.id}"><button type="button" class="btn btn-danger">Delete</button></a>
+                        </div>
+                    </div>
+                </div>`
     }
 }
 
 
 $(document).ready(function () {
     const items = [];
-    _items.forEach((element, i) => items[i] = new Item(element._id, element.type, element.name, element.desc, element.price, element.img))
+    _items.forEach((element, i) => items[i] = new Item(element._id, element.type, element.name, element.desc, element.price, element.img, element.sold, element.hidden))
 
     const itemPerRow = 4
     let html = "";
     let count = 0;
     for (const i in items) {
         const item = items[i]
+        if (item.hidden && !admin) {
+            continue;
+        }
         count += 1;
         if (count === 1 || count % (itemPerRow + 1) === 0) {
             html += `<div class="row g-3">`
@@ -46,22 +70,13 @@ $(document).ready(function () {
                             <hr>
                             ${item.getCardPrice()}
                         </div>
+                        ${admin ? item.getAdminButtons() : ""}
                     </div>
                 </div>`
 
         if (count % (itemPerRow + 1) === itemPerRow) {
             html += `</div>`
         }
-        // else if (items.length - 1 == i) {
-        //     for (let i = 0; i < 2 - count % 4; i++) {
-        //         html += `<div class="col">
-        //                     <div class="card" hidden>
-        //                         <div class="card-body">
-        //                         </div>
-        //                     </div>
-        //                 </div>`
-        //     }
-        // }
     }
 
     $("#itemCards").append(html)
