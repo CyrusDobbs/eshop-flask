@@ -46,11 +46,3 @@ def get_img(img_id):
 @main.route('/contact/')
 def contact():
     return render_template('contact.html')
-
-
-@main.route('/admin/')
-def admin():
-    return render_template('admin.html')
-
-
-

@@ -2,9 +2,9 @@ import os
 from pathlib import Path
 
 from bson import ObjectId
-from flask import session, redirect, url_for, request, flash, current_app, render_template, send_file, Blueprint
+from flask import session, redirect, url_for, request, flash, current_app, render_template, Blueprint
 
-from main import main, shop
+from main import shop
 
 admin = Blueprint('admin', __name__)
 
@@ -15,6 +15,11 @@ def check_admin():
         return redirect(url_for('auth.login'))
     else:
         pass
+
+
+@admin.route('/admin/')
+def admin():
+    return render_template('admin.html')
 
 
 @admin.route('/additem', methods=['POST'])
