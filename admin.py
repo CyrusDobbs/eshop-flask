@@ -11,7 +11,7 @@ administration = Blueprint('administration', __name__)
 
 @administration.before_request
 def check_admin():
-    if not session.get('username') or session.get('username') in current_app.config['ADMINS']:
+    if not session.get('username') or session.get('username') not in current_app.config['ADMINS']:
         return redirect(url_for('auth.login'))
     else:
         pass
