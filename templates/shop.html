@@ -6,13 +6,56 @@
     {{ collection }}
 {% endblock %}
 {% block content %}
-    <div id="itemCards" class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+                <ul class="list-group">
+                    <li class="list-group-item active" aria-current="true" value="all">An active item</li>
+                    <li class="list-group-item">A second item</li>
+                    <li class="list-group-item">A third item</li>
+                    <li class="list-group-item">A fourth item</li>
+                    <li class="list-group-item">And a fifth one</li>
+                </ul>
+                <div class="list-group mb-3" id="collectionChecks">
+                    <label class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" value="all">
+                        All
+                    </label>
+                    <label class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" value="rings">
+                        Rings
+                    </label>
+                    <label class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" value="bracelets">
+                        Bangles & Bracelets
+                    </label>
+                    <label class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" value="earrings">
+                        Earrings
+                    </label>
+                    <label class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" value="necklaces">
+                        Pendants & Necklaces
+                    </label>
+                    <label class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" value="broaches">
+                        Broaches
+                    </label>
+                    <label class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" value="spoons">
+                        Spoons & Scoops
+                    </label>
+                </div>
+            </div>
+            <div id="itemCards" class="col">
+            </div>
+        </div>
     </div>
 {% endblock %}
 {% block scripts %}
     <script>
         const admin = `{{ session['username'] }}`
-        const _items = JSON.parse(`{{ items|tojson|safe }}`)
+        const _items = JSON.parse(`{{ items|tojson|safe|replace("\\n", "%NEWLINE%")|replace("\\r", "%NEWLINER%") }}`)
     </script>
     <script src="/static/js/items.js"></script>
 {% endblock %}

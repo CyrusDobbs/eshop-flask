@@ -1,6 +1,6 @@
-function Item(id, type, name, desc, price, img, sold, hidden) {
+function Item(id, collection, name, desc, price, img, sold, hidden) {
     this.id = id;
-    this.type = type;
+    this.collection = collection;
     this.name = name;
     this.desc = desc;
     this.price = price;
@@ -12,11 +12,11 @@ function Item(id, type, name, desc, price, img, sold, hidden) {
         return `<h4 class="card-title text-center mb-3">${this.name}</h4>`;
     }
     this.getCardDesc = function () {
-        return `<p class="card-text">${this.desc}</p>`;
+        return `<p class="card-text">${this.desc.replaceAll("%NEWLINE%", "<br>")}</p>`;
     }
     this.getCardPrice = function () {
         if (this.sold) {
-            return `<p class="card-text fs-5 text-danger">SOLD</p>`;
+            return `<p class="card-text fs-5"><strike>£${this.price}</strike>  <span class="text-danger">SOLD</span></p>`;
         } else {
             return `<p class="card-text fs-5">£${this.price}</p>`;
         }
@@ -25,45 +25,50 @@ function Item(id, type, name, desc, price, img, sold, hidden) {
         return `<img src="/img/${this.id}" class="card-img-top">`;
     }
     this.getAdminButtons = function () {
-        return `<div class="card-footer">
-                    <div class="row">
-                        <div class="col-auto">
-                            <a href="/sold/${this.id}"><button type="button" class="btn btn-success">${this.sold ? "<b>Un-Sell</b>" : "Sold"}</button></a>
-                        </div>
-                        <div class="col-auto">
-                            <a href="/hide/${this.id}"><button type="button" class="btn btn-warning">${this.hidden ? "<b>Un-Hide</b>" : "Hide"}</button></a>
-                        </div>
-                        <div class="col-auto">
-                            <a href="/delete/${this.id}"><button type="button" class="btn btn-danger">Delete</button></a>
-                        </div>
-                    </div>
+        return `<div class="btn-group mx-auto" role="group">
+                  <a href="/sold/${this.id}"><button type="button" class="btn btn-success">${this.sold ? "<b>Un-Sell</b>" : "Sold"}</button></a>
+                  <a href="/hide/${this.id}"><button type="button" class="btn btn-warning">${this.hidden ? "<b>Un-Hide</b>" : "Hide"}</button></a>
+                  <a href="/delete/${this.id}"><button type="button" class="btn btn-danger">Delete</button></a>
                 </div>`
     }
 }
 
+const collections = []
 
-$(document).ready(function () {
-    const items = [];
-    _items.forEach((element, i) => items[i] = new Item(element._id, element.type, element.name, element.desc, element.price, element.img, element.sold, element.hidden))
+$('.form-check-input').on('click', function () {
+    console.log($(this))
+    if ($(this).is(':checked')) {
+        console.log('Checked', $(this)[0].value)
+        collections.push($(this)[0].value)
+    } else {
+        console.log('Not Checked')
+        const index = collections.indexOf($(this)[0].value);
+        if (index > -1) {
+            collections.splice(index, 1); // 2nd parameter means remove one item only
+        }
+    }
+    display_items(collections)
+});
 
-    const itemPerRow = 4
-    let html = "";
-    let count = 0;
+function display_items(collections) {
+    const items = []
+    _items.forEach((element, i) => items[i] = new Item(element._id, element.collection, element.name, element.desc, element.price, element.img, element.sold, element.hidden))
+    console.log(items)
+    let html = `<div class="row row-cols-auto g-3">`;
     for (const i in items) {
         const item = items[i]
         if (item.hidden && !admin) {
             continue;
         }
-        count += 1;
-        if (count === 1 || count % (itemPerRow + 1) === 0) {
-            html += `<div class="row g-3">`
+        if (!collections.includes(item.collection)) {
+            console.log(item.collection)
+            console.log(collections)
+            continue;
         }
 
-        html += `<div class="col-md-6 col-lg-4 col-xl-3 mb-3">
+        html += `<div class="col-md-6 col-lg-4 col-xl-3">
                     <div class="card bg-light h-100" >
-                        <div class="h-70">
-                            ${item.getCardImg()}
-                        </div>
+                        ${item.getCardImg()}
                         <div class="card-body">
                             ${item.getCardTitle()}
                             ${item.getCardDesc()}
@@ -73,11 +78,14 @@ $(document).ready(function () {
                         ${admin ? item.getAdminButtons() : ""}
                     </div>
                 </div>`
-
-        if (count % (itemPerRow + 1) === itemPerRow) {
-            html += `</div>`
-        }
     }
+    html += `</div>`
+    const cards = $("#itemCards")
+    cards.empty()
+    cards.append(html)
+}
 
-    $("#itemCards").append(html)
+$(document).ready(function () {
+    display_items(collections);
 })
+

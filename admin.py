@@ -36,7 +36,7 @@ def add_item():
 
     form = request.form
     name = form.get('name')
-    desc = form.get('desc')
+    desc = form.get('desc').replace("\r\n", "\n")
     collection = form.get('collection')
     price = round(float(form.get('price')), 2)
 
