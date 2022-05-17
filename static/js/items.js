@@ -57,12 +57,13 @@ function displayCollection() {
 }
 
 function getInnerCardHTML(item) {
-    return `<img src="/img/${item._id}" class="card-img-top">
+    return `<img src="/img/${item._id}_0" class="card-img-top">
             <div class="card-body">
                 <h4 class="card-title text-center mb-3">${item.name}</h4>
                 <p class="card-text m-0">${item.materials.replaceAll("%NEWLINE%", "<br>")}</p>   
                 <p class="card-text m-0">${item.dimensions.replaceAll("%NEWLINE%", "<br>")}</p>   
                 ${item.other ? `<p class="card-text m-0">${item.other.replaceAll("%NEWLINE%", "<br>")}</p>` : ""}
+<!--                ${!admin ? `<a href="/item/${item._id}" class="stretched-link"></a>` : ""}-->
             </div>
             <div class="card-footer">${getPriceHTML(item)}</div>
             ${admin ? getAdminHTML(item) : ""}`
@@ -73,6 +74,7 @@ function getAdminHTML(item) {
               <button id="sold-${item._id}" class="btn btn-outline-primary admin-button">${item.sold ? "<b>Un-Sell</b>" : "Sold"}</button>
               <button id="hidden-${item._id}" class="btn btn-outline-primary admin-button">${item.hidden ? "<b>Un-Hide</b>" : "Hide"}</button>
               <button id="delete-${item._id}" class="btn btn-outline-primary admin-button">Delete</button>
+<!--              <a id="view-${item._id}" href="/item/${item._id}" class="btn btn-outline-primary">View</a>-->
             </div>`
 }
 

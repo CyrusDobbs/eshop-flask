@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 from flask import Blueprint, render_template, request, redirect, send_file
 from flask import current_app
@@ -37,10 +38,18 @@ def shop():
     return render_template('shop.html', items=items, collection=collection)
 
 
+@main.route('/item/<item_id>')
+def item_screen(item_id):
+    img_ids = [filename.name.split(".")[0] for filename in
+               Path(os.path.join(current_app.static_folder, 'img')).glob(f"{item_id}_?.*")]
+    return render_template('item.html', img_ids=img_ids)
+
+
 @main.route('/img/<img_id>')
 def get_img(img_id):
-    filename = os.path.join("static/img", f"{img_id}_0.jpg")
-    return send_file(filename, mimetype='image/jpeg')
+    filename = next(
+        filename for filename in Path(os.path.join(current_app.static_folder, 'img')).glob(f"{img_id}.*"))
+    return send_file(filename, mimetype=f'image/{filename.name.split(".")[1]}')
 
 
 @main.route('/contact/')
