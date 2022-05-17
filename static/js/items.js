@@ -12,7 +12,7 @@ $('#itemCards').on('click', '.admin-button', function () {
     const itemId = this.id.split('-')[1]
     if (func === "delete") {
         $.ajax({
-        url: `http://127.0.0.1:5000/delete/${itemId}`,
+        url: `${location.origin}/delete/${itemId}`,
         type: 'GET',
         dataType: 'json', // added data type
         success: function () {
@@ -21,7 +21,7 @@ $('#itemCards').on('click', '.admin-button', function () {
         })
     } else {
         $.ajax({
-        url: `http://127.0.0.1:5000/update/${func}/${itemId}`,
+        url: `${location.origin}/update/${func}/${itemId}`,
         type: 'GET',
         dataType: 'json', // added data type
         success: function (item) {
@@ -35,7 +35,7 @@ $('#itemCards').on('click', '.admin-button', function () {
 function displayCollection() {
     const collection = $('input[name="collectionRadios"]:checked').val();
     return $.ajax({
-        url: "http://127.0.0.1:5000/get_items/",
+        url: `${location.origin}/get_items/`,
         type: 'GET',
         dataType: 'json', // added data type
         data: {"collection": collection},
