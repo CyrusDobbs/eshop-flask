@@ -6,56 +6,47 @@
     {{ collection }}
 {% endblock %}
 {% block content %}
-    <div class="container">
         <div class="row">
             <div class="col-lg-2">
-                <ul class="list-group">
-                    <li class="list-group-item active" aria-current="true" value="all">An active item</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A fourth item</li>
-                    <li class="list-group-item">And a fifth one</li>
-                </ul>
                 <div class="list-group mb-3" id="collectionChecks">
                     <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="all">
+                        <input class="form-check-input me-1 collection-radio" name="collectionRadios" type="radio" value="all" checked>
                         All
                     </label>
                     <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="rings">
+                        <input class="form-check-input me-1 collection-radio" name="collectionRadios" type="radio" value="rings">
                         Rings
                     </label>
                     <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="bracelets">
+                        <input class="form-check-input me-1 collection-radio" name="collectionRadios" type="radio" value="bracelets">
                         Bangles & Bracelets
                     </label>
                     <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="earrings">
+                        <input class="form-check-input me-1 collection-radio" name="collectionRadios" type="radio" value="earrings">
                         Earrings
                     </label>
                     <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="necklaces">
+                        <input class="form-check-input me-1 collection-radio" name="collectionRadios" type="radio" value="necklaces">
                         Pendants & Necklaces
                     </label>
                     <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="broaches">
+                        <input class="form-check-input me-1 collection-radio" name="collectionRadios" type="radio" value="broaches">
                         Broaches
                     </label>
                     <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="spoons">
+                        <input class="form-check-input me-1 collection-radio" name="collectionRadios" type="radio" value="spoons">
                         Spoons & Scoops
                     </label>
                 </div>
             </div>
-            <div id="itemCards" class="col">
+            <div id="itemCards" class="col mb-3">
             </div>
         </div>
-    </div>
 {% endblock %}
 {% block scripts %}
     <script>
         const admin = `{{ session['username'] }}`
-        const _items = JSON.parse(`{{ items|tojson|safe|replace("\\n", "%NEWLINE%")|replace("\\r", "%NEWLINER%") }}`)
+        {#let _items = JSON.parse(`{{ items|tojson|safe|replace("\\n", "%NEWLINE%")|replace("\\r", "%NEWLINER%") }}`)#}
     </script>
     <script src="/static/js/items.js"></script>
 {% endblock %}

@@ -39,7 +39,7 @@ def shop():
 
 @main.route('/img/<img_id>')
 def get_img(img_id):
-    filename = os.path.join("static/img", f"{img_id}.jpg")
+    filename = os.path.join("static/img", f"{img_id}_0.jpg")
     return send_file(filename, mimetype='image/jpeg')
 
 

@@ -24,13 +24,22 @@
                     <input name="name" class="form-control" id="itemName" required>
                 </div>
                 <div class="mb-3">
-                    <label for="itemDesc" class="form-label">Description</label>
-                    <textarea name="desc" class="form-control" id="itemDesc" rows="3"></textarea>
+                    <label for="itemMaterials" class="form-label">Materials</label>
+                    <input name="materials" class="form-control" id="itemMaterials">
+                </div>
+                <div class="mb-3">
+                    <label for="itemDimensions" class="form-label">Dimensions</label>
+                    <input name="dimensions" class="form-control" id="itemDimensions">
+                </div>
+                <div class="mb-3">
+                    <label for="itemOther" class="form-label">Other</label>
+                    <input name="other" class="form-control" id="itemOther">
                 </div>
                 <div class="mb-2">
                     <label for="collection" class="form-label">Collection</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="collection" id="rings" value="rings" required>
+                        <input class="form-check-input" type="radio" name="collection" id="rings" value="rings"
+                               required>
                         <label class="form-check-label" for="rings">
                             Rings
                         </label>
@@ -42,7 +51,7 @@
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="collection" id="earrings" value="earrings" >
+                        <input class="form-check-input" type="radio" name="collection" id="earrings" value="earrings">
                         <label class="form-check-label" for="earrings">
                             Earrings
                         </label>
@@ -66,16 +75,36 @@
                         </label>
                     </div>
                 </div>
-                <label for="itemPrice" class="form-label">Price</label>
-                <div class="input-group mb-3">
-                    <div class="input-group-text">£</div>
-                    <input name="price" type="number" class="form-control" id="itemPrice" required>
+                <div class="mb-3">
+                    <label for="itemPrice" class="form-label">Price</label>
+                    <div class="input-group">
+                        <div class="input-group-text">£</div>
+                        <input name="price" type="number" class="form-control" id="itemPrice" required>
+                    </div>
                 </div>
                 <div class="mb-3">
-                    <label for="formFileSm" class="f orm-label">Upload image</label>
-                    <input name="image" class="form-control form-control-sm" id="formFileSm" type="file" accept=".gif,.jpg,.jpeg,.png" required>
+                    <label for="formFileSm" class="form-label">Upload image</label>
+                    <input name="images[]" class="form-control form-control-sm" id="formFileSm" type="file"
+                           accept=".gif,.jpg,.jpeg,.png" required multiple>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <label for="itemStatus">Item Status</label>
+                <div class="input-group mb-3" id="itemStatus">
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="itemSold">
+                            Sold
+                        </label>
+                        <input class="form-check-input" name="sold" type="checkbox" value="X" id="itemSold">
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="itemHidden">
+                            Hide
+                        </label>
+                        <input class="form-check-input" name="hidden" type="checkbox" value="X" id="itemHidden">
+                    </div>
+                </div>
+                <div class="d-grid gap-2 mb-3">
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </div>
             </form>
         </div>
     </div>
