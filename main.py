@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+from bson import ObjectId
 from flask import Blueprint, render_template, request, redirect, send_file
 from flask import current_app
 
@@ -40,9 +41,11 @@ def shop():
 
 @main.route('/item/<item_id>')
 def item_screen(item_id):
+    item = current_app.db.items.find_one({"_id": ObjectId(item_id)})
     img_ids = [filename.name.split(".")[0] for filename in
                Path(os.path.join(current_app.static_folder, 'img')).glob(f"{item_id}_?.*")]
-    return render_template('item.html', img_ids=img_ids)
+    item['_id'] = str(item['_id'])
+    return render_template('item.html', item=item, img_ids=img_ids)
 
 
 @main.route('/img/<img_id>')

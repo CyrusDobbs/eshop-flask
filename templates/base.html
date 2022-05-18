@@ -14,11 +14,11 @@
     {% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
+<nav class="navbar navbar-expand-lg navbar-light shadow mb-4">
     <div class="container-xxl">
-{#        <div class="mx-2 mt-1">#}
-{#            <a href="/shop"><img alt="RT Logo" src="/static/img/logo.jpg" height="100"></a>#}
-{#        </div>#}
+        {#        <div class="mx-2 mt-1">#}
+        {#            <a href="/shop"><img alt="RT Logo" src="/static/img/logo.jpg" height="100"></a>#}
+        {#        </div>#}
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -43,14 +43,15 @@
                 {% endif %}
             </ul>
         </div>
+        <a href="https://www.instagram.com/rebethorne/"><img alt="insta" src="/static/img/insta.svg" height="50"></a>
     </div>
 </nav>
 <div class="container-xxl">
     <div class="container">
         <div class="row mb-2 ms-1"><h1 class="">{% block title %}{% endblock %}</h1></div>
         <div class="container">
-        {% block content %}
-        {% endblock %}
+            {% block content %}
+            {% endblock %}
         </div>
     </div>
 </div>
