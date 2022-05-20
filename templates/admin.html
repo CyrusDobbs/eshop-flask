@@ -37,43 +37,16 @@
                 </div>
                 <div class="mb-2">
                     <label for="collection" class="form-label">Collection</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="collection" id="rings" value="rings"
-                               required>
-                        <label class="form-check-label" for="rings">
-                            Rings
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="collection" id="bracelets" value="bracelets">
-                        <label class="form-check-label" for="bracelets">
-                            Bangles & Bracelets
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="collection" id="earrings" value="earrings">
-                        <label class="form-check-label" for="earrings">
-                            Earrings
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="collection" id="necklaces" value="necklaces">
-                        <label class="form-check-label" for="necklaces">
-                            Pendants & Necklaces
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="collection" id="broaches" value="broaches">
-                        <label class="form-check-label" for="broaches">
-                            Broaches
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="collection" id="spoons" value="spoons">
-                        <label class="form-check-label" for="spoons">
-                            Spoons & Scoops
-                        </label>
-                    </div>
+                    {% for ext, int in collections.items() %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="collection" id="{{ int }}"
+                                   value="{{ int }}"
+                                   required>
+                            <label class="form-check-label" for="{{ int }}">
+                                {{ ext }}
+                            </label>
+                        </div>
+                    {% endfor %}
                 </div>
                 <div class="mb-3">
                     <label for="itemPrice" class="form-label">Price</label>

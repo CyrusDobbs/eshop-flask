@@ -4,6 +4,8 @@ from pathlib import Path
 from bson import ObjectId
 from flask import session, redirect, url_for, request, flash, current_app, render_template, Blueprint, jsonify
 
+from config import collection_int
+
 mongo_admin = Blueprint('administration', __name__)
 
 
@@ -17,7 +19,7 @@ def check_admin():
 
 @mongo_admin.route('/admin/')
 def admin():
-    return render_template('admin.html')
+    return render_template('admin.html', collections=collection_int)
 
 
 @mongo_admin.route('/additem', methods=['POST'])

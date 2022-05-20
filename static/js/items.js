@@ -60,9 +60,9 @@ function getInnerCardHTML(item) {
     return `<img src="/img/${item._id}_0" class="card-img-top">
             <div class="card-body">
                 <h4 class="card-title text-center mb-3">${item.name}</h4>
-                <p class="card-text m-0">${item.materials.replaceAll("%NEWLINE%", "<br>")}</p>   
-                <p class="card-text m-0">${item.dimensions.replaceAll("%NEWLINE%", "<br>")}</p>   
-                ${item.other ? `<p class="card-text m-0">${item.other.replaceAll("%NEWLINE%", "<br>")}</p>` : ""}
+<!--                <p class="card-text m-0">${item.materials.replaceAll("%NEWLINE%", "<br>")}</p>   -->
+<!--                <p class="card-text m-0">${item.dimensions.replaceAll("%NEWLINE%", "<br>")}</p>   -->
+<!--                ${item.other ? `<p class="card-text m-0">${item.other.replaceAll("%NEWLINE%", "<br>")}</p>` : ""}-->
                 ${!admin ? `<a href="/item/${item._id}" class="stretched-link"></a>` : ""}
             </div>
             <div class="card-footer">${getPriceHTML(item)}</div>
