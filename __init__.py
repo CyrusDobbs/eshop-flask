@@ -14,16 +14,17 @@ from mongo import mongo as mongo_blueprint
 def create_app():
     app = Flask(__name__)
     config = load_config()
+    app.env = os.environ["FLASK_ENV"]
 
-    if config['config']['construction']:
+    if config[app.env]['construction']:
         @app.route("/")
         def in_construction():
             return render_template("comingsoon.html")
         return app
 
-    app.config['SECRET_KEY'] = config['config']['secretkey']
-    app.config["MONGO_URI"] = config['config']['mongo']
-    app.config["ADMINS"] = config['config']['admins']
+    app.config['SECRET_KEY'] = config[app.env]['secretkey']
+    app.config["MONGO_URI"] = config[app.env]['mongo']
+    app.config["ADMINS"] = config[app.env]['admins']
 
     # Allow users to miss out trailing slashes
     app.url_map.strict_slashes = False

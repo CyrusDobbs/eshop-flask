@@ -7,7 +7,7 @@
         <div class="col">
             <div class="card mb-3">
                 <div class="row g-0">
-                    <div class="col-md-4">
+                    <div class="col">
                         <div id="itemCarousel" class="carousel slide w-100" data-bs-ride="carousel">
                             <div class="carousel-indicators">
                                 {% for img_id in img_ids %}
@@ -36,7 +36,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-8 d-flex flex-column">
                         <div class="card-body">
                             <h1 class="card-title">{{ item['name'] }}</h1>
                             <br>
@@ -46,9 +46,13 @@
                             <br>
                             <p class="card-text m-0 fs-4"><br>{{ item['other'] }}</p>
                         </div>
+                        <div class="card-footer">
+                            <p class="card-text m-0 fs-4">£{{ item['price'] }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 {% endblock %}
