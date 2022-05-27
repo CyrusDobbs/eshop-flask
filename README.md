@@ -1,2 +1,2 @@
 # eshop-flask
-A jewellery website - http://www.rtjewelery.co.uk/.
+A jewellery website - http://www.rtjewellery.co.uk/.
