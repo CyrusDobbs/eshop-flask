@@ -1,0 +1,61 @@
+[{
+  "_id": {
+    "$oid": "6284208a98d297d548d76700"
+  },
+  "name": "Compressed studs",
+  "materials": "Silver",
+  "dimensions": "1cm x .6cm",
+  "other": "Support butterfly backs to prevent earrings tipping on lobe",
+  "collection": "earrings",
+  "price": 30,
+  "sold": true,
+  "hidden": false
+},{
+  "_id": {
+    "$oid": "628420e5bd56177eafd76700"
+  },
+  "name": "Eternal Flower Studs",
+  "materials": "Silver",
+  "dimensions": "1.2cm square",
+  "other": "Support butterflies to prevent earrings tipping on earlobe",
+  "collection": "earrings",
+  "price": 45,
+  "sold": false,
+  "hidden": false
+},{
+  "_id": {
+    "$oid": "62842147bd56177eafd76701"
+  },
+  "name": "Stack rings various designs",
+  "materials": "1.2 square wire silver ",
+  "dimensions": "",
+  "other": "Can be made to order. Please stipulate what design you require ",
+  "collection": "rings",
+  "price": 24,
+  "sold": false,
+  "hidden": false
+},{
+  "_id": {
+    "$oid": "628421b5bd56177eafd76702"
+  },
+  "name": "Patterned Cufflinks",
+  "materials": "Silver ",
+  "dimensions": "1.4cm square",
+  "other": "",
+  "collection": "broaches",
+  "price": 70,
+  "sold": false,
+  "hidden": false
+},{
+  "_id": {
+    "$oid": "628929ce419705f2361f3dbb"
+  },
+  "name": "Eternal Flower Studs",
+  "materials": "Sterling Silver",
+  "dimensions": "1.7 cm square ",
+  "other": "Special support butterfly back supplied. Holds earlobe flush with earring. Made of sterling silver. ",
+  "collection": "earrings",
+  "price": 49,
+  "sold": false,
+  "hidden": false
+}]
