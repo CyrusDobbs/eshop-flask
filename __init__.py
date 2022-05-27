@@ -25,6 +25,7 @@ def create_app():
     app.config['SECRET_KEY'] = config[app.env]['secretkey']
     app.config["MONGO_URI"] = config[app.env]['mongo']
     app.config["ADMINS"] = config[app.env]['admins']
+    app.item_image_folder = os.path.join(app.static_folder, 'img', config[app.env]['item_imgs'])
 
     # Allow users to miss out trailing slashes
     app.url_map.strict_slashes = False

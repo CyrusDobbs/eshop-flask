@@ -65,7 +65,7 @@ def update_item(attr, item_id):
 def item_delete(item_id):
     item_identifier = {"_id": ObjectId(item_id)}
     current_app.db.items.delete_one(item_identifier)
-    for filename in Path(os.path.join(current_app.static_folder, 'img')).glob(f"{item_id}_?.*"):
+    for filename in Path(current_app.item_image_folder).glob(f"{item_id}_?.*"):
         filename.unlink()
     return jsonify(success=True)
 
