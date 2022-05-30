@@ -1,0 +1,79 @@
+<!doctype html>
+{% extends 'item.html' %}
+{% block item_content %}
+    <div class="col-md-8 d-flex flex-column">
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data" action="/updateitem">
+                <input name="_id" class="form-control" id="_id" value="{{ item['_id'] }}"
+                       hidden>
+                <div class="mb-3">
+                    <label for="itemName" class="form-label">Name</label>
+                    <input name="name" class="form-control" id="itemName" value="{{ item['name'] }}"
+                           required>
+                </div>
+                <div class="mb-3">
+                    <label for="itemMaterials" class="form-label">Materials</label>
+                    <input name="materials" class="form-control" id="itemMaterials"
+                           value="{{ item['materials'] }}">
+                </div>
+                <div class="mb-3">
+                    <label for="itemDimensions" class="form-label">Dimensions</label>
+                    <input name="dimensions" class="form-control" id="itemDimensions"
+                           value="{{ item['dimensions'] }}">
+                </div>
+                <div class="mb-3">
+                    <label for="itemOther" class="form-label">Other</label>
+                    <input name="other" class="form-control" id="itemOther"
+                           value="{{ item['other'] }}">
+                </div>
+                <div class="mb-2">
+                    <label for="collection" class="form-label">Collection</label>
+                    {% for ext, int in collections.items() %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="collection" id="{{ int }}"
+                                   value="{{ int }}"
+                                   required {{ 'checked' if int == item['collection'] }} >
+                            <label class="form-check-label" for="{{ int }}">
+                                {{ ext }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label for="itemPrice" class="form-label">Price</label>
+                    <div class="input-group">
+                        <div class="input-group-text">£</div>
+                        <input name="price" type="number" class="form-control" id="itemPrice"
+                               value="{{ item['price'] }}" required>
+                    </div>
+                </div>
+                {#                            <div class="mb-3">#}
+                {#                                <label for="formFileSm" class="form-label">Upload image</label>#}
+                {#                                <input name="images[]" class="form-control form-control-sm" id="formFileSm" type="file"#}
+                {#                                       accept=".gif,.jpg,.jpeg,.png" required multiple>#}
+                {#                            </div>#}
+                <label for="itemStatus">Item Status</label>
+                <div class="input-group mb-3" id="itemStatus">
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="itemSold">
+                            Sold
+                        </label>
+                        <input class="form-check-input" name="sold" type="checkbox" value="X"
+                               id="itemSold" {{ 'checked' if item['sold'] }}>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="itemHidden">
+                            Hide
+                        </label>
+                        <input class="form-check-input" name="hidden" type="checkbox" value="X"
+                               id="itemHidden" {{ 'checked' if item['hidden'] }}>
+                    </div>
+                </div>
+                <div class="d-grid gap-2 mb-3">
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}

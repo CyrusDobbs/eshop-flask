@@ -12,21 +12,21 @@ $('#itemCards').on('click', '.admin-button', function () {
     const itemId = this.id.split('-')[1]
     if (func === "delete") {
         $.ajax({
-        url: `${location.origin}/delete/${itemId}`,
-        type: 'GET',
-        dataType: 'json', // added data type
-        success: function () {
-            displayCollection();
+            url: `${location.origin}/delete/${itemId}`,
+            type: 'GET',
+            dataType: 'json', // added data type
+            success: function () {
+                displayCollection();
             }
         })
     } else {
         $.ajax({
-        url: `${location.origin}/update/${func}/${itemId}`,
-        type: 'GET',
-        dataType: 'json', // added data type
-        success: function (item) {
-            const cardHTML = getInnerCardHTML(item);
-            $(`#card-${itemId}`).html(cardHTML);
+            url: `${location.origin}/update/${func}/${itemId}`,
+            type: 'GET',
+            dataType: 'json', // added data type
+            success: function (item) {
+                const cardHTML = getInnerCardHTML(item);
+                $(`#card-${itemId}`).html(cardHTML);
             }
         })
     }
@@ -58,24 +58,21 @@ function displayCollection() {
 
 function getInnerCardHTML(item) {
     return `<img src="/img/${item._id}_0" class="card-img-top">
-            <div class="card-body bg-white">
-                <h4 class="card-title text-center mb-3">${item.name}</h4>
-<!--                <p class="card-text m-0">${item.materials.replaceAll("%NEWLINE%", "<br>")}</p>   -->
-<!--                <p class="card-text m-0">${item.dimensions.replaceAll("%NEWLINE%", "<br>")}</p>   -->
-<!--                ${item.other ? `<p class="card-text m-0">${item.other.replaceAll("%NEWLINE%", "<br>")}</p>` : ""}-->
+            <div class="card-body bg-white pb-0">
+                <h4 class="card-title text-center mb-4">${item.name}</h4>
                 ${!admin ? `<a href="/item/${item._id}" class="stretched-link"></a>` : ""}
             </div>
-            <div class="card-footer border-top-0 bg-white">${getPriceHTML(item)}</div>
+            <div class="card-footer border-top-0 bg-white text-center">${getPriceHTML(item)}</div>
             ${admin ? getAdminHTML(item) : ""}`
 }
 
 function getAdminHTML(item) {
-    return `<div class="btn-group" role="group">
-              <button id="sold-${item._id}" class="btn btn-outline-primary admin-button">${item.sold ? "<b>Un-Sell</b>" : "Sold"}</button>
-              <button id="hidden-${item._id}" class="btn btn-outline-primary admin-button">${item.hidden ? "<b>Un-Hide</b>" : "Hide"}</button>
-              <button id="delete-${item._id}" class="btn btn-outline-primary admin-button">Delete</button>
-              <a id="view-${item._id}" href="/item/${item._id}" class="btn btn-outline-primary">View</a>
-            </div>`
+    return `<div class="btn-group mb-1" role="group">
+              <button id="sold-${item._id}" class="btn btn-outline-secondary admin-button">${item.sold ? "<b>Un-Sell</b>" : "Sold"}</button>
+              <button id="hidden-${item._id}" class="btn btn-outline-secondary admin-button">${item.hidden ? "<b>Un-Hide</b>" : "Hide"}</button>
+              <button id="delete-${item._id}" class="btn btn-outline-secondary admin-button">Delete</button>
+              
+            </div><a id="view-${item._id}" href="/item/${item._id}" class="btn btn-outline-secondary">View</a>`
 }
 
 function getPriceHTML(item) {

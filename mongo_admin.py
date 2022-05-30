@@ -52,6 +52,27 @@ def add_one():
     return redirect("/admin")
 
 
+@mongo_admin.route('/updateitem', methods=['POST'])
+def update_one():
+    form = request.form
+
+    item = {'name': form.get('name'),
+            'materials': form.get('materials').replace("\r\n", "\n"),
+            'dimensions': form.get('dimensions').replace("\r\n", "\n"),
+            'other': form.get('other').replace("\r\n", "\n"),
+            'collection': form.get('collection'),
+            'price': round(float(form.get('price')), 2),
+            'sold': bool(form.get('sold')),
+            'hidden': bool(form.get('hidden'))}
+
+    current_app.db.items.find_one_and_update(
+        filter={'_id': ObjectId(form.get('_id'))},
+        update={'$set': item},
+    )
+
+    return redirect(f"/item/{form.get('_id')}")
+
+
 @mongo_admin.route('/update/<attr>/<item_id>')
 def update_item(attr, item_id):
     item_id = {"_id": ObjectId(item_id)}

@@ -10,11 +10,12 @@
     <meta charset="UTF-8">
     <title>RThorne Jewelry</title>
     <link rel="icon" href="/static/img/thumbnail.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block head %}
     {% endblock %}
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light shadow mb-4">
+<body class="d-flex flex-column min-vh-100">
+<nav class="navbar navbar-expand-lg navbar-light shadow mb-4 bg-light">
     <div class="container-xxl">
         {#        <div class="mx-2 mt-1">#}
         {#            <a href="/shop"><img alt="RT Logo" src="/static/img/logo.jpg" height="100"></a>#}
@@ -30,9 +31,9 @@
                 <li class="nav-item">
                     <a class="nav-link text-dark" href="/shop"> Shop </a>
                 </li>
-{#                <li class="nav-item">#}
-{#                    <a class="nav-link text-dark" href="/contact">Contact</a>#}
-{#                </li>#}
+                {#                <li class="nav-item">#}
+                {#                    <a class="nav-link text-dark" href="/contact">Contact</a>#}
+                {#                </li>#}
                 {% if session['username'] %}
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="/admin">Admin</a>
@@ -59,5 +60,23 @@
 <script src="/static/js/libraries/jquery-3.6.0.js"></script>
 {% block scripts %}
 {% endblock %}
+<footer class="page-footer mt-auto border-top border-1 bg-light">
+    <div class="container">
+        <div class="row justify-content-center pt-2">
+            <div class="col ">
+                <div class="text-center">
+                    <h2 class="footer-heading align-bottom text-dark">RTJewellery</h2>
+                    <p class="mb-1">
+                        <a class="text-decoration-none text-dark" href="#">Home</a> |
+                        <a class="text-decoration-none text-dark" href="/about">About</a> |
+                        <a class="text-decoration-none text-dark" href="/shop">Shop</a>
+                    </p>
+                    <span class="footer-copyright text-sm-end align-bottom text-dark">Copyright &copy; 2022 Rebecca Thorne</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer -->
 </body>
 </html>

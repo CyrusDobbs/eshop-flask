@@ -6,7 +6,10 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login')
 def login():
-    return render_template('login.html')
+    if not session.get('username'):
+        return render_template('login.html')
+    else:
+        return redirect(url_for('administration.admin'))
 
 
 @auth.route('/login', methods=['POST'])
@@ -22,7 +25,7 @@ def login_post():
         return redirect(url_for('auth.login'))  # if the user doesn't exist or password is wrong, reload the page
 
     session["username"] = username
-    return redirect(url_for('administration.admin'))
+    return redirect("/shop")
 
 
 @auth.route('/logout')

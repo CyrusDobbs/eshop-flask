@@ -1,8 +1,7 @@
 from pathlib import Path
 
 from bson import ObjectId
-from flask import Blueprint, render_template, redirect, send_file
-from flask import current_app
+from flask import Blueprint, render_template, redirect, send_file, current_app, session
 
 from config import collection_int
 
@@ -30,7 +29,10 @@ def item_screen(item_id):
     img_ids = [filename.name.split(".")[0] for filename in
                Path(current_app.item_image_folder).glob(f"{item_id}_?.*")]
     item['_id'] = str(item['_id'])
-    return render_template('item.html', item=item, img_ids=img_ids)
+    if not session.get('username') or session.get('username') not in current_app.config['ADMINS']:
+        return render_template('item-user.html', item=item, img_ids=img_ids)
+    else:
+        return render_template('item-admin.html', item=item, img_ids=img_ids, collections=collection_int)
 
 
 @main.route('/img/<img_id>')

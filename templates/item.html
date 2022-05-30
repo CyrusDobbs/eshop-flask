@@ -3,56 +3,41 @@
 {% block title %}
 {% endblock %}
 {% block content %}
-    <div class="row">
-        <div class="col">
-            <div class="card mb-3">
-                <div class="row g-0">
-                    <div class="col">
-                        <div id="itemCarousel" class="carousel slide w-100" data-bs-ride="carousel">
-                            <div class="carousel-indicators">
-                                {% for img_id in img_ids %}
-                                    <button type="button" data-bs-target="#itemCarousel"
-                                            data-bs-slide-to="{{ loop.index0 }}"
-                                            class="active"
-                                            aria-current="true" aria-label="Slide {{ loop.index0 }}"></button>
-                                {% endfor %}
-                            </div>
-                            <div class="carousel-inner">
-                                {% for img_id in img_ids %}
-                                    <div class="carousel-item {{ "active" if loop.index0 == 0 }}">
-                                        <img src="/img/{{ img_id }}" class="d-block w-100">
-                                    </div>
-                                {% endfor %}
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#itemCarousel"
-                                    data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#itemCarousel"
-                                    data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md">
+                <div id="itemCarousel" class="carousel slide w-100" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        {% for img_id in img_ids %}
+                            <button type="button" data-bs-target="#itemCarousel"
+                                    data-bs-slide-to="{{ loop.index0 }}"
+                                    class="active"
+                                    aria-current="true" aria-label="Slide {{ loop.index0 }}"></button>
+                        {% endfor %}
                     </div>
-                    <div class="col-md-8 d-flex flex-column">
-                        <div class="card-body">
-                            <h1 class="card-title">{{ item['name'] }}</h1>
-                            <br>
-                            <p class="card-text m-0 fs-4">Materials: <br>{{ item['materials'] }}</p>
-                            <br>
-                            <p class="card-text m-0 fs-4">Dimensions: <br>{{ item['dimensions'] }}</p>
-                            <br>
-                            <p class="card-text m-0 fs-4"><br>{{ item['other'] }}</p>
-                        </div>
-                        <div class="card-footer">
-                            <p class="card-text m-0 fs-4">£{{ item['price'] }}</p>
-                        </div>
+                    <div class="carousel-inner">
+                        {% for img_id in img_ids %}
+                            <div class="carousel-item {{ "active" if loop.index0 == 0 }}">
+                                <img src="/img/{{ img_id }}" class="d-block w-100">
+                            </div>
+                        {% endfor %}
                     </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#itemCarousel"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#itemCarousel"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
+            {% block item_content %}
+            {% endblock %}
         </div>
-    </div>
+        {% block paypal %}
+        {% endblock %}
     </div>
 {% endblock %}

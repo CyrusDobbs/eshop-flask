@@ -2,13 +2,13 @@ import os
 import pathlib
 
 import tomli
-from flask import Flask, render_template
+from flask import Flask, render_template, session, request
 from flask_pymongo import PyMongo
 
-from mongo_admin import mongo_admin as mongo_admin_blueprint
 from auth import auth as auth_blueprint
 from main import main as main_blueprint
 from mongo import mongo as mongo_blueprint
+from mongo_admin import mongo_admin as mongo_admin_blueprint
 
 
 def create_app():
@@ -17,10 +17,10 @@ def create_app():
     app.env = os.environ["FLASK_ENV"]
 
     if config[app.env]['construction']:
-        @app.route("/")
-        def in_construction():
-            return render_template("comingsoon.html")
-        return app
+        @app.before_request
+        def under_construction():
+            if not session.get('username') and "login" not in request.url_rule.rule and "static" not in request.url_rule.rule:
+                return render_template("comingsoon.html")
 
     app.config['SECRET_KEY'] = config[app.env]['secretkey']
     app.config["MONGO_URI"] = config[app.env]['mongo']

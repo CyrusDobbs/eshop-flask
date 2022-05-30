@@ -53,7 +53,7 @@ db.items.insertMany([{
     "materials": "Silver ",
     "dimensions": "1.4cm square",
     "other": "",
-    "collection": "broaches",
+    "collection": "cufflinks",
     "price": 70,
     "sold": false,
     "hidden": false
