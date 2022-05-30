@@ -153,3 +153,6 @@ dmypy.json
 
 # Sensitive config
 /conf.toml
+
+# Item images on prod server
+static/img/items
